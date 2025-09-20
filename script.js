@@ -4,7 +4,7 @@ const sendBtn = document.getElementById("sendBtn");
 const emojiBtn = document.querySelector(".emoji-btn");
 const emojiPicker = document.getElementById("emojiPicker");
 
-// Add a username prompt
+// Prompt for username
 let username = "";
 while (!username) {
   username = prompt("Enter your username:");
@@ -16,10 +16,7 @@ function addMessage(text, type = "sent") {
 
   const msgDiv = document.createElement("div");
   msgDiv.classList.add("message", type);
-
-  // Remove delete/hide buttons if you don’t need them
   msgDiv.innerHTML = `<span>${text}</span>`;
-  
   chatBox.appendChild(msgDiv);
   chatBox.scrollTop = chatBox.scrollHeight;
 }
@@ -49,14 +46,18 @@ async function sendMessage() {
       body: JSON.stringify({ username, message })
     });
     msgInput.value = "";
-    fetchMessages(); // refresh messages after sending
+    fetchMessages();
   } catch (err) {
     console.error("Error sending message:", err);
   }
 }
 
-// Send on button click
+// Send on button click or touch
 sendBtn.addEventListener("click", sendMessage);
+sendBtn.addEventListener("touchstart", (e) => {
+  e.preventDefault(); // prevent double firing
+  sendMessage();
+});
 
 // Send on Enter key
 msgInput.addEventListener("keypress", (e) => {
@@ -75,9 +76,10 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// Insert emoji into input
+// Insert emoji into input and hide picker
 emojiPicker.addEventListener("emoji-click", (event) => {
   msgInput.value += event.detail.unicode;
+  emojiPicker.style.display = "none";
 });
 
 // Auto-refresh messages every 2 seconds
