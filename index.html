@@ -6,13 +6,12 @@
   <title>chatter</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Emoji Picker -->
   <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 </head>
 <body>
   <div class="chat-container">
     <header class="chat-header">
-      <h2>chatter</h2>
+      <h2>Chatter</h2>
     </header>
 
     <main id="chat-box" class="chat-box">
@@ -20,9 +19,9 @@
     </main>
 
     <footer class="chat-footer">
-      <button type="button" class="emoji-btn"><i class="fa-regular fa-face-smile"></i></button>
+      <button id="emojiBtn" type="button"><i class="fa-regular fa-face-smile"></i></button>
       <input id="msgInput" type="text" placeholder="Type a message" />
-      <button id="sendBtn" type="button"><i class="fa-solid fa-paper-plane"></i></button>
+      <button id="sendBtn" type="button">Send</button>
       <emoji-picker id="emojiPicker"></emoji-picker>
     </footer>
   </div>

@@ -1,4 +1,3 @@
-/* General layout */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -8,20 +7,17 @@ body {
 .chat-container {
   display: flex;
   flex-direction: column;
-  height: 100vh; /* full viewport height */
-  position: relative; /* for emoji picker positioning */
+  height: 100vh;
+  position: relative;
 }
 
-/* Header */
 .chat-header {
   background: #075E54;
   color: white;
   padding: 15px;
   text-align: center;
-  flex-shrink: 0;
 }
 
-/* Chat box */
 .chat-box {
   flex: 1;
   padding: 10px;
@@ -31,13 +27,11 @@ body {
   flex-direction: column;
 }
 
-/* Messages */
 .message {
   max-width: 70%;
   padding: 10px;
   border-radius: 10px;
   margin: 5px 0;
-  position: relative;
   word-wrap: break-word;
 }
 
@@ -51,7 +45,6 @@ body {
   align-self: flex-start;
 }
 
-/* Footer */
 .chat-footer {
   display: flex;
   align-items: center;
@@ -72,12 +65,13 @@ body {
 }
 
 .chat-footer button {
-  background: none;
+  background: #075E54;
+  color: white;
   border: none;
-  font-size: 24px;
-  color: #075E54;
-  cursor: pointer;
+  border-radius: 6px;
   padding: 8px 12px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 /* Emoji picker positioning */
@@ -89,23 +83,17 @@ emoji-picker {
   z-index: 200;
 }
 
-/* Responsive for mobile */
+/* Responsive */
 @media (max-width: 600px) {
   .chat-header h2 {
     font-size: 16px;
   }
 
   .chat-footer input {
-    padding: 8px;
     font-size: 14px;
   }
 
   .chat-footer button {
-    font-size: 20px;
-  }
-
-  emoji-picker {
-    bottom: 60px;
-    right: 5px;
+    font-size: 16px;
   }
 }

@@ -1,15 +1,14 @@
 const chatBox = document.getElementById("chat-box");
 const msgInput = document.getElementById("msgInput");
 const sendBtn = document.getElementById("sendBtn");
-const emojiBtn = document.querySelector(".emoji-btn");
+const emojiBtn = document.getElementById("emojiBtn");
 const emojiPicker = document.getElementById("emojiPicker");
 
 let username = localStorage.getItem("chatUsername") || "";
 
-// Ask username once
+// Prompt username only once
 if (!username) {
-  username = prompt("Enter your username:");
-  if (!username) username = "Anonymous";
+  username = prompt("Enter your username:") || "Anonymous";
   localStorage.setItem("chatUsername", username);
 }
 
@@ -30,14 +29,14 @@ async function fetchMessages() {
     const res = await fetch("http://localhost:8080/api/chat/messages");
     const messages = await res.json();
 
-    chatBox.innerHTML = ""; // Clear chat box
+    chatBox.innerHTML = "";
     messages.forEach(msg => addMessage(`${msg.username}: ${msg.message}`, "received"));
   } catch (err) {
-    console.error("Error fetching messages:", err);
+    console.error(err);
   }
 }
 
-// Send message to backend
+// Send message
 async function sendMessage() {
   const message = msgInput.value.trim();
   if (!message) return;
@@ -51,36 +50,29 @@ async function sendMessage() {
     msgInput.value = "";
     fetchMessages();
   } catch (err) {
-    console.error("Error sending message:", err);
+    console.error(err);
   }
 }
 
-// Send message on button click
+// Event listeners
 sendBtn.addEventListener("click", sendMessage);
+msgInput.addEventListener("keypress", (e) => { if (e.key === "Enter") sendMessage(); });
 
-// Send message on Enter key
-msgInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") sendMessage();
-});
-
-// Toggle emoji picker
 emojiBtn.addEventListener("click", () => {
   emojiPicker.style.display = emojiPicker.style.display === "none" ? "block" : "none";
 });
 
-// Hide emoji picker when clicking outside
 document.addEventListener("click", (e) => {
   if (!emojiPicker.contains(e.target) && !emojiBtn.contains(e.target)) {
     emojiPicker.style.display = "none";
   }
 });
 
-// Insert emoji into input and hide picker
 emojiPicker.addEventListener("emoji-click", (event) => {
   msgInput.value += event.detail.unicode;
   emojiPicker.style.display = "none";
 });
 
-// Auto-refresh messages every 2 seconds
+// Auto-refresh messages
 setInterval(fetchMessages, 2000);
-fetchMessages(); // initial load
+fetchMessages();
