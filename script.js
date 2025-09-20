@@ -1,6 +1,6 @@
 const chatBox = document.getElementById("chat-box");
 const msgInput = document.getElementById("msgInput");
-const sendBtn = document.getElementById("sendBtn");
+const chatForm = document.getElementById("chatForm");
 const emojiBtn = document.querySelector(".emoji-btn");
 const emojiPicker = document.getElementById("emojiPicker");
 
@@ -52,16 +52,10 @@ async function sendMessage() {
   }
 }
 
-// Send on button click or touch
-sendBtn.addEventListener("click", sendMessage);
-sendBtn.addEventListener("touchstart", (e) => {
-  e.preventDefault(); // prevent double firing
+// Handle form submit (works on mobile and desktop)
+chatForm.addEventListener("submit", (e) => {
+  e.preventDefault(); // prevent page reloads
   sendMessage();
-});
-
-// Send on Enter key
-msgInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") sendMessage();
 });
 
 // Toggle emoji picker
