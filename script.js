@@ -1,13 +1,16 @@
 const chatBox = document.getElementById("chat-box");
 const msgInput = document.getElementById("msgInput");
-const chatForm = document.getElementById("chatForm");
+const sendBtn = document.getElementById("sendBtn");
 const emojiBtn = document.querySelector(".emoji-btn");
 const emojiPicker = document.getElementById("emojiPicker");
 
-// Prompt for username
-let username = "";
-while (!username) {
+let username = localStorage.getItem("chatUsername") || "";
+
+// Ask username once
+if (!username) {
   username = prompt("Enter your username:");
+  if (!username) username = "Anonymous";
+  localStorage.setItem("chatUsername", username);
 }
 
 // Add message to chat box
@@ -52,10 +55,12 @@ async function sendMessage() {
   }
 }
 
-// Handle form submit (works on mobile and desktop)
-chatForm.addEventListener("submit", (e) => {
-  e.preventDefault(); // prevent page reloads
-  sendMessage();
+// Send message on button click
+sendBtn.addEventListener("click", sendMessage);
+
+// Send message on Enter key
+msgInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") sendMessage();
 });
 
 // Toggle emoji picker

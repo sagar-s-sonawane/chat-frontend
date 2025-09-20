@@ -9,6 +9,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh; /* full viewport height */
+  position: relative; /* for emoji picker positioning */
 }
 
 /* Header */
@@ -57,7 +58,7 @@ body {
   background: #fff;
   padding: 8px;
   border-top: 1px solid #ddd;
-  position: sticky; /* stick to bottom */
+  position: sticky;
   bottom: 0;
   z-index: 100;
 }
@@ -73,10 +74,10 @@ body {
 .chat-footer button {
   background: none;
   border: none;
-  font-size: 24px;   /* bigger for mobile */
+  font-size: 24px;
   color: #075E54;
   cursor: pointer;
-  padding: 8px 12px; /* easier to tap */
+  padding: 8px 12px;
 }
 
 /* Emoji picker positioning */
@@ -108,4 +109,3 @@ emoji-picker {
     right: 5px;
   }
 }
-
