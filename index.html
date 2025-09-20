@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Chat App</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Emoji Picker -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+</head>
+<body>
+  <div class="chat-container">
+    <header class="chat-header">
+      <h2>chatbot</h2>
+    </header>
+
+    <main id="chat-box" class="chat-box">
+      <!-- Messages appear here -->
+    </main>
+
+    <footer class="chat-footer">
+      <button class="emoji-btn"><i class="fa-regular fa-face-smile"></i></button>
+      <input id="msgInput" type="text" placeholder="Type a message" />
+      <button id="sendBtn"><i class="fa-solid fa-paper-plane"></i></button>
+      <emoji-picker id="emojiPicker" style="position:absolute; bottom:60px; right:20px; display:none;"></emoji-picker>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
